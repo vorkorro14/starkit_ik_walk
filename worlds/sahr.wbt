@@ -1,0 +1,34 @@
+#VRML_SIM R2022b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/SAHRV74/SAHRV74Robocup.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.1446988637245225 -0.05111916910815047 0.9881543752807679 3.8133486702589
+  position 4.7137459407317115 3.8770755253518363 1.9861772163827294
+  follow "red player 1"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+  floorTileSize 0.1 0.1
+}
+SAHRV74Robocup {
+  translation 0 0 0.4
+  controllerArgs [
+    "--protocol=tcp"
+    "--ip-address=127.0.0.1"
+  ]
+}
+DirectionalLight {
+  ambientIntensity 1
+  direction -20 0 0
+  intensity 3
+}
