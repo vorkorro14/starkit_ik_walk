@@ -32,7 +32,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 #Eigen library dependency
 find_package(Eigen3 REQUIRED)
-message("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA${EIGEN3_INCLUDE_DIR}")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../eigen)
 
 #Enable C++11
