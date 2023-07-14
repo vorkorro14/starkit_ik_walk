@@ -7,7 +7,7 @@ PROTO SAHRV74Robocup [
   field  SFVec3f     translation     0 0 0
   field  SFRotation  rotation        0 1 0 0
   field  SFString    name            "red player 1"  # Is `Robot.name`.
-  field  MFString    controller  "<extern>"          # Is `Robot.controllerArgs`.
+  field  MFString    controller  "ik_walk"          # Is `Robot.controllerArgs`.
   field  MFString    controllerArgs  []          # Is `Robot.controllerArgs`.
   field  SFString    customData      ""
 ]

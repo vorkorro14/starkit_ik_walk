@@ -1,0 +1,612 @@
+#VRML_SIM R2023b utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the LeggedRobot
+# Extracted from: C:/Users/Fedor/Desktop/New folder (22)/LeggedRobot_description/urdf/LeggedRobot.urdf
+
+PROTO LeggedRobot [
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "LeggedRobot"  # Is `Robot.name`.
+  field  SFString    controller      "void"         # Is `Robot.controller`.
+  field  MFString    controllerArgs  []             # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""             # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE          # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE           # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE          # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+    Solid{
+      translation 0 0 0.045
+      boundingObject Mesh {
+          url "../meshes/base_link.stl"
+        }
+      physics Physics {
+        density -1
+        mass 7.805255
+        centerOfMass [ -0.000000 -0.000000 0.075199 ]
+        inertiaMatrix [
+          4.407400e-02 2.639700e-02 4.123200e-02
+          -0.000000e+00 -0.000000e+00 0.000000e+00
+        ]
+        }
+        name "base"
+      children[
+      Shape {
+        appearance DEF silver PBRAppearance {
+          baseColor 0.500000 0.500000 0.500000
+          roughness 1.000000
+          metalness 0
+        }
+        geometry DEF base_link Mesh {
+          url "../meshes/base_link.stl"
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis -0.000000 -0.000000 1.000000
+          anchor 0.000000 0.073437 0.000000
+        }
+        device [
+          RotationalMotor {
+            name "Revolute 1"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "Revolute 1_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.000000 0.073437 0.000000
+          children [
+            Pose {
+              translation 0.000000 -0.073437 -0.000000
+              children [
+                Shape {
+                  appearance USE silver
+                  geometry DEF Hip_v1__1__1 Mesh {
+                    url "../meshes/Hip_v1__1__1.stl"
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                anchor -0.035000 0.000000 -0.045328
+              }
+              device [
+                RotationalMotor {
+                  name "Revolute 3"
+                  maxTorque 10000
+                }
+                PositionSensor {
+                  name "Revolute 3_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation -0.035000 0.000000 -0.045328
+                children [
+                  Pose {
+                    translation 0.035000 -0.073437 0.045328
+                    children [
+                      Shape {
+                        appearance USE silver
+                        geometry DEF Hip_joint_v1_1 Mesh {
+                          url "../meshes/Hip_joint_v1_1.stl"
+                        }
+                      }
+                    ]
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis -0.000000 -1.000000 0.000000
+                      anchor 0.035000 -0.020000 -0.000071
+                    }
+                    device [
+                      RotationalMotor {
+                        name "Revolute 5"
+                        maxTorque 10000
+                      }
+                      PositionSensor {
+                        name "Revolute 5_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation 0.035000 -0.020000 -0.000071
+                      children [
+                        Pose {
+                          translation 0.000000 -0.053437 0.045399
+                          children [
+                            Shape {
+                              appearance USE silver
+                              geometry DEF Upper_leg_v2__1__1 Mesh {
+                                url "../meshes/Upper_leg_v2__1__1.stl"
+                              }
+                            }
+                          ]
+                        }
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            axis 0.000000 1.000000 0.000000
+                            anchor 0.000000 0.005000 -0.140000
+                          }
+                          device [
+                            RotationalMotor {
+                              name "Revolute 7"
+                              maxTorque 10000
+                            }
+                            PositionSensor {
+                              name "Revolute 7_sensor"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation 0.000000 0.005000 -0.140000
+                            children [
+                              Pose {
+                                translation 0.000000 -0.058437 0.185399
+                                children [
+                                  Shape {
+                                    appearance USE silver
+                                    geometry DEF Lower_leg_v2__1__1 Mesh {
+                                      url "../meshes/Lower_leg_v2__1__1.stl"
+                                    }
+                                  }
+                                ]
+                              }
+                              HingeJoint {
+                                jointParameters HingeJointParameters {
+                                  axis -0.000000 -1.000000 0.000000
+                                  anchor 0.000000 0.000000 -0.140000
+                                }
+                                device [
+                                  RotationalMotor {
+                                    name "Revolute 10"
+                                    maxTorque 10000
+                                  }
+                                  PositionSensor {
+                                    name "Revolute 10_sensor"
+                                  }
+                                ]
+                                endPoint Solid {
+                                  translation 0.000000 0.000000 -0.140000
+                                  children [
+                                    Pose {
+                                      translation 0.000000 -0.058437 0.325399
+                                      children [
+                                        Shape {
+                                          appearance USE silver
+                                          geometry DEF Ankle_v1__2__1 Mesh {
+                                            url "../meshes/Ankle_v1__2__1.stl"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                    HingeJoint {
+                                      jointParameters HingeJointParameters {
+                                        axis -1.000000 0.000000 -0.000000
+                                        anchor -0.035000 0.015000 0.000071
+                                      }
+                                      device [
+                                        RotationalMotor {
+                                          name "Revolute 11"
+                                          maxTorque 10000
+                                        }
+                                        PositionSensor {
+                                          name "Revolute 11_sensor"
+                                        }
+                                      ]
+                                      endPoint Solid {
+                                        translation -0.035000 0.015000 0.000071
+                                        children [
+                                          Pose {
+                                            translation 0.035000 -0.073437 0.325328
+                                            children [
+                                              Shape {
+                                                appearance USE silver
+                                                geometry DEF Foot_v1__1__1 Mesh {
+                                                  url "../meshes/Foot_v1__1__1.stl"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                        name "Foot_v1__1__1"
+                                        boundingObject Pose {
+                                          translation 0.035000 -0.073437 0.325328
+                                          children [
+                                            USE Foot_v1__1__1
+                                          ]
+                                        }
+                                        physics Physics {
+                                          density -1
+                                          mass 0.181915
+                                          centerOfMass [ 0.052603 0.000000 -0.036763 ]
+                                          inertiaMatrix [
+                                            9.700000e-05 2.540000e-04 3.070000e-04
+                                            0.000000e+00 1.000000e-05 -0.000000e+00
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                  name "Ankle_v1__2__1"
+                                  boundingObject Pose {
+                                    translation 0.000000 -0.058437 0.325399
+                                    children [
+                                      USE Ankle_v1__2__1
+                                    ]
+                                  }
+                                  physics Physics {
+                                    density -1
+                                    mass 0.013455
+                                    centerOfMass [ 0.001958 0.015000 0.000053 ]
+                                  }
+                                }
+                              }
+                            ]
+                            name "Lower_leg_v2__1__1"
+                            boundingObject Pose {
+                              translation 0.000000 -0.058437 0.185399
+                              children [
+                                USE Lower_leg_v2__1__1
+                              ]
+                            }
+                            physics Physics {
+                              density -1
+                              mass 0.301868
+                              centerOfMass [ 0.003676 0.015000 -0.058758 ]
+                              inertiaMatrix [
+                                6.290000e-04 6.420000e-04 6.200000e-05
+                                0.000000e+00 2.200000e-05 0.000000e+00
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                      name "Upper_leg_v2__1__1"
+                      boundingObject Pose {
+                        translation 0.000000 -0.053437 0.045399
+                        children [
+                          USE Upper_leg_v2__1__1
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.143131
+                        centerOfMass [ -0.000000 0.020000 -0.071929 ]
+                        inertiaMatrix [
+                          3.460000e-04 3.260000e-04 5.600000e-05
+                          0.000000e+00 0.000000e+00 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "Hip_joint_v1_1"
+                boundingObject Pose {
+                  translation 0.035000 -0.073437 0.045328
+                  children [
+                    USE Hip_joint_v1_1
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.015566
+                  centerOfMass [ 0.036778 0.000000 -0.000023 ]
+                  inertiaMatrix [
+                    1.000000e-06 5.000000e-06 6.000000e-06
+                    -0.000000e+00 -0.000000e+00 -0.000000e+00
+                  ]
+                }
+              }
+            }
+          ]
+          name "Hip_v1__1__1"
+          boundingObject Pose {
+            translation 0.000000 -0.073437 -0.000000
+            children [
+              USE Hip_v1__1__1
+            ]
+          }
+          physics Physics {
+            density -1
+            mass 0.071210
+            centerOfMass [ 0.002298 -0.000001 -0.013357 ]
+            inertiaMatrix [
+              2.600000e-05 7.000000e-05 5.400000e-05
+              0.000000e+00 0.000000e+00 0.000000e+00
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 -0.000000 -1.000000
+          anchor 0.000000 -0.073437 0.000000
+        }
+        device [
+          RotationalMotor {
+            name "Revolute 2"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "Revolute 2_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.000000 -0.073437 0.000000
+          children [
+            Pose {
+              translation 0.000000 0.073437 -0.000000
+              children [
+                Shape {
+                  appearance USE silver
+                  geometry DEF Hip_v1_1 Mesh {
+                    url "../meshes/Hip_v1_1.stl"
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                anchor -0.035000 0.000000 -0.045328
+              }
+              device [
+                RotationalMotor {
+                  name "Revolute 4"
+                  maxTorque 10000
+                }
+                PositionSensor {
+                  name "Revolute 4_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation -0.035000 0.000000 -0.045328
+                children [
+                  Pose {
+                    translation 0.035000 0.073437 0.045328
+                    children [
+                      Shape {
+                        appearance USE silver
+                        geometry DEF Ankle_v1_1 Mesh {
+                          url "../meshes/Ankle_v1_1.stl"
+                        }
+                      }
+                    ]
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.000000 -1.000000 0.000000
+                      anchor 0.035000 -0.015000 -0.000071
+                    }
+                    device [
+                      RotationalMotor {
+                        name "Revolute 6"
+                        maxTorque 10000
+                      }
+                      PositionSensor {
+                        name "Revolute 6_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation 0.035000 -0.015000 -0.000071
+                      children [
+                        Pose {
+                          translation -0.000000 0.088437 0.045399
+                          children [
+                            Shape {
+                              appearance USE silver
+                              geometry DEF Upper_leg_v2_1 Mesh {
+                                url "../meshes/Upper_leg_v2_1.stl"
+                              }
+                            }
+                          ]
+                        }
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            axis 0.000000 1.000000 0.000000
+                            anchor 0.000000 0.005000 -0.140000
+                          }
+                          device [
+                            RotationalMotor {
+                              name "Revolute 8"
+                              maxTorque 10000
+                            }
+                            PositionSensor {
+                              name "Revolute 8_sensor"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation 0.000000 0.005000 -0.140000
+                            children [
+                              Pose {
+                                translation -0.000000 0.083437 0.185399
+                                children [
+                                  Shape {
+                                    appearance USE silver
+                                    geometry DEF Lower_leg_v2_1 Mesh {
+                                      url "../meshes/Lower_leg_v2_1.stl"
+                                    }
+                                  }
+                                ]
+                              }
+                              HingeJoint {
+                                jointParameters HingeJointParameters {
+                                  axis 0.000000 -1.000000 0.000000
+                                  anchor 0.000000 0.000000 -0.140000
+                                }
+                                device [
+                                  RotationalMotor {
+                                    name "Revolute 9"
+                                    maxTorque 10000
+                                  }
+                                  PositionSensor {
+                                    name "Revolute 9_sensor"
+                                  }
+                                ]
+                                endPoint Solid {
+                                  translation 0.000000 0.000000 -0.140000
+                                  children [
+                                    Pose {
+                                      translation -0.000000 0.083437 0.325399
+                                      children [
+                                        Shape {
+                                          appearance USE silver
+                                          geometry DEF Ankle_v1__1__1 Mesh {
+                                            url "../meshes/Ankle_v1__1__1.stl"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                    HingeJoint {
+                                      jointParameters HingeJointParameters {
+                                        axis -1.000000 0.000000 -0.000000
+                                        anchor -0.035000 0.015000 0.000071
+                                      }
+                                      device [
+                                        RotationalMotor {
+                                          name "Revolute 12"
+                                          maxTorque 10000
+                                        }
+                                        PositionSensor {
+                                          name "Revolute 12_sensor"
+                                        }
+                                      ]
+                                      endPoint Solid {
+                                        translation -0.035000 0.015000 0.000071
+                                        children [
+                                          Pose {
+                                            translation 0.035000 0.068437 0.325328
+                                            children [
+                                              Shape {
+                                                appearance USE silver
+                                                geometry DEF Foot_v1_1 Mesh {
+                                                  url "../meshes/Foot_v1_1.stl"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                        name "Foot_v1_1"
+                                        boundingObject Pose {
+                                          translation 0.035000 0.068437 0.325328
+                                          children [
+                                            USE Foot_v1_1
+                                          ]
+                                        }
+                                        physics Physics {
+                                          density -1
+                                          mass 0.181915
+                                          centerOfMass [ 0.052603 -0.000000 -0.036763 ]
+                                          inertiaMatrix [
+                                            9.700000e-05 2.540000e-04 3.070000e-04
+                                            0.000000e+00 1.000000e-05 -0.000000e+00
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                  name "Ankle_v1__1__1"
+                                  boundingObject Pose {
+                                    translation -0.000000 0.083437 0.325399
+                                    children [
+                                      USE Ankle_v1__1__1
+                                    ]
+                                  }
+                                  physics Physics {
+                                    density -1
+                                    mass 0.013455
+                                    centerOfMass [ 0.001958 0.014999 0.000053 ]
+                                  }
+                                }
+                              }
+                            ]
+                            name "Lower_leg_v2_1"
+                            boundingObject Pose {
+                              translation -0.000000 0.083437 0.185399
+                              children [
+                                USE Lower_leg_v2_1
+                              ]
+                            }
+                            physics Physics {
+                              density -1
+                              mass 0.301868
+                              centerOfMass [ 0.003676 0.015000 -0.058758 ]
+                              inertiaMatrix [
+                                6.290000e-04 6.420000e-04 6.200000e-05
+                                0.000000e+00 2.200000e-05 0.000000e+00
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                      name "Upper_leg_v2_1"
+                      boundingObject Pose {
+                        translation -0.000000 0.088437 0.045399
+                        children [
+                          USE Upper_leg_v2_1
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.143131
+                        centerOfMass [ 0.000000 0.020000 -0.071929 ]
+                        inertiaMatrix [
+                          3.460000e-04 3.260000e-04 5.600000e-05
+                          0.000000e+00 0.000000e+00 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "Ankle_v1_1"
+                boundingObject Pose {
+                  translation 0.035000 0.073437 0.045328
+                  children [
+                    USE Ankle_v1_1
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.013455
+                  centerOfMass [ 0.036958 -0.000001 -0.000018 ]
+                }
+              }
+            }
+          ]
+          name "Hip_v1_1"
+          boundingObject Pose {
+            translation 0.000000 0.073437 -0.000000
+            children [
+              USE Hip_v1_1
+            ]
+          }
+          physics Physics {
+            density -1
+            mass 0.071210
+            centerOfMass [ 0.002298 -0.000001 -0.013357 ]
+            inertiaMatrix [
+              2.600000e-05 7.000000e-05 5.400000e-05
+              0.000000e+00 0.000000e+00 0.000000e+00
+            ]
+          }
+        }
+      }
+    ]
+    }
+    ]
+    name IS name
+    boundingObject Box {size 0.001 0.001 0.001}
+    physics Physics{mass -1}
+  }
+}
