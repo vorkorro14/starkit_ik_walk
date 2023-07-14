@@ -64,10 +64,10 @@ attribute_ranges = {
     "swingGain": (0.0, 0.1),
     "swingRollGain": (-1.0, 1.0),
     "swingPhase": (0.0, 1.0),
-    "stepUpVel": (0.0, 5.0),
-    "stepDownVel": (0.0, 5.0),
-    "riseUpVel": (0.0, 5.0),
-    "riseDownVel": (0.0, 5.0),
+    # "stepUpVel": (0.0, 5.0),
+    # "stepDownVel": (0.0, 5.0),
+    # "riseUpVel": (0.0, 5.0),
+    # "riseDownVel": (0.0, 5.0),
     "swingPause": (0.0, 0.5),
     "swingVel": (0.0, 5.0),
     "trunkXOffset": (-0.2, 0.2),
@@ -122,19 +122,20 @@ def create_window_2():
     current_column = 0
 
     for attr_name, (min_value, max_value) in attribute_ranges.items():
-        label = ttk.Label(window, text=f"{attr_name}: {getattr(params, attr_name):.3f}")
-        label.grid(row=current_row, column=current_column, padx=5, pady=5)
-        labels[attr_name] = label
+        if attr_name not in ("stepGain", "lateralGain", "turnGain"):
+            label = ttk.Label(window, text=f"{attr_name}: {getattr(params, attr_name):.3f}")
+            label.grid(row=current_row, column=current_column, padx=5, pady=5)
+            labels[attr_name] = label
 
-        trackbar = ttk.Scale(window, from_=min_value, to=max_value, length=200, orient=tk.HORIZONTAL,
-                             command=lambda value, param_name=attr_name: update_value(param_name, value))
-        trackbar.set(getattr(params, attr_name))
-        trackbar.grid(row=current_row, column=current_column+1, padx=5, pady=5)
+            trackbar = ttk.Scale(window, from_=min_value, to=max_value, length=200, orient=tk.HORIZONTAL,
+                                 command=lambda value, param_name=attr_name: update_value(param_name, value))
+            trackbar.set(getattr(params, attr_name))
+            trackbar.grid(row=current_row, column=current_column+1, padx=5, pady=5)
 
-        current_column += 2
-        if current_column >= trackbars_per_row * 2:
-            current_row += 1
-            current_column = 0
+            current_column += 2
+            if current_column >= trackbars_per_row * 2:
+                current_row += 1
+                current_column = 0
     return window
 
 def toggle_enabled():
@@ -152,6 +153,8 @@ w2.geometry("+100+550")
 robot = Robot()
 
 dof_names = [
+    'left_elbow',
+    'right_elbow',
     'left_hip_yaw', 
     'left_hip_roll', 
     'left_hip_pitch', 
@@ -174,7 +177,10 @@ for name in dof_names:
 
 def send_command(command: sk.IKWalkOutputs):
     for name, motor in servos.items():
-        motor.setPosition(getattr(command, name))
+        if "elbow" in name:
+            motor.setPosition(-2.5)
+        else:
+            motor.setPosition(getattr(command, name))
 
 while robot.step(timestep) != -1:
     w1.update_idletasks()
